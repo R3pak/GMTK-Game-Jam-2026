@@ -17,6 +17,8 @@ func _physics_process(delta: float) -> void:
 	velocity.y += get_gravity_value() * delta
 	velocity.x = direction_x * speed
 	
+	print(direction_x) 
+	
 	animation()
 	get_input()
 	move_and_slide()
@@ -26,6 +28,9 @@ func get_input():
 	
 	if Input.is_action_just_pressed("jump"):
 		jump()
+	
+	if Input.is_action_just_released("jump") and velocity.y < 0.0:
+		velocity.y *= 0.3
 
 func jump():
 	velocity.y = jump_velocity

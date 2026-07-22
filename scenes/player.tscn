@@ -323,7 +323,7 @@ height = 56.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1797269713]
 script = ExtResource("1_3vyb7")
-jump_height = 100.0
+jump_height = 150.0
 jump_time_to_peak = 0.4
 jump_time_to_descent = 0.3
 
