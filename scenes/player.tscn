@@ -360,7 +360,7 @@ jump_time_to_descent = 0.3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"fall"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139048532]
