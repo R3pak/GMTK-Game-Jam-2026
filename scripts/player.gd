@@ -2,9 +2,13 @@ extends CharacterBody2D
 
 # MOVEMENT VARS
 var speed: float = 250.0
-var direction_x: float
-var acc: float = 1.05
+var x_input: float
+var velocity_weight: float
+var acc: float = 5.2
+var accfs: float = 1.05 #the reason there is 2 acc variables is the first one breaks the speed accel since its a much bigger number
 var decel: float = 30.0
+var friction: float = 4.5
+
 
 # JUMP VARS
 @export var jump_height: float
@@ -16,18 +20,20 @@ var decel: float = 30.0
 
 func _physics_process(delta: float) -> void:
 	velocity.y += get_gravity_value() * delta
-	velocity.x = direction_x * speed
 	
-	print(direction_x) 
+	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	velocity_weight = delta * (acc if x_input else friction)
+	velocity.x = lerp(velocity.x, x_input * speed, velocity_weight)
+	
+ 
 	
 	animation()
 	get_input()
 	move_and_slide()
 
 func get_input():
-	direction_x = Input.get_axis("left", "right")
 	
-	if Input.is_action_pressed("run") and direction_x != 0:
+	if Input.is_action_pressed("run") and x_input != 0:
 		run()
 	else:
 		speed = move_toward(speed, 250.0, decel)
@@ -46,7 +52,7 @@ func get_gravity_value() -> float:
 
 func run():
 	if speed <= 750.0:
-		speed *= acc
+		speed *= accfs
 
 func animation():
 	if not is_on_floor():
@@ -57,10 +63,10 @@ func animation():
 			if $Sprite.animation != "fall":
 				$Sprite.play("fall")
 	else:
-		if direction_x:
+		if x_input:
 			$Sprite.play("walk")
 		else:
 			$Sprite.play("idle")
 	
-	if direction_x != 0:
-		$Sprite.flip_h = direction_x < 0
+	if x_input != 0:
+		$Sprite.flip_h = x_input < 0
