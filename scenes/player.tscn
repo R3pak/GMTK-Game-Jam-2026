@@ -7,7 +7,6 @@ script = ExtResource("1_3vyb7")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
 autoplay = "default"
-frame = 3
 frame_progress = 0.41058236
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=692834907]
