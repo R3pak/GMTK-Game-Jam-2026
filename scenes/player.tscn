@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b87hq2kmyp5ee"]
+
+[ext_resource type="Script" uid="uid://csldjucj0pnt8" path="res://scripts/player.gd" id="1_3vyb7"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1797269713]
+script = ExtResource("1_3vyb7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
+autoplay = "default"
+frame = 3
+frame_progress = 0.41058236
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=692834907]
+position = Vector2(1, 17)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1965027483]
