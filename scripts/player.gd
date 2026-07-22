@@ -4,6 +4,7 @@ extends CharacterBody2D
 var speed: float = 250.0
 var direction_x: float
 var acc: float = 1.05
+var decel: float = 30.0
 
 # JUMP VARS
 @export var jump_height: float
@@ -26,10 +27,10 @@ func _physics_process(delta: float) -> void:
 func get_input():
 	direction_x = Input.get_axis("left", "right")
 	
-	if Input.is_action_pressed("run"):
+	if Input.is_action_pressed("run") and direction_x != 0:
 		run()
 	else:
-		speed = 250.0
+		speed = move_toward(speed, 250.0, decel)
 	
 	if Input.is_action_just_pressed("jump"):
 		jump()
@@ -44,7 +45,7 @@ func get_gravity_value() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
 func run():
-	if speed <= 500.0:
+	if speed <= 750.0:
 		speed *= acc
 
 func animation():
