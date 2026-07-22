@@ -5,6 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://cnimvnhwn3631" path="res://graphics/sprites/jump.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://d0oft7mfwlf4d" path="res://graphics/sprites/walk.png" id="3_qhqgy"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5jhy"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(1000, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_holxr"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(1100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx1m4"]
+atlas = ExtResource("3_dqkch")
+region = Rect2(1200, 0, 100, 100)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
 region = Rect2(0, 0, 100, 100)
@@ -177,6 +189,20 @@ region = Rect2(1100, 0, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_g5jhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_holxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx1m4")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qhqgy")
 }, {
 "duration": 1.0,
@@ -275,6 +301,11 @@ animations = [{
 "name": &"jump",
 "speed": 20.0
 }, {
+"frames": [],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_60mlk")
@@ -329,10 +360,8 @@ jump_time_to_descent = 0.3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"jump"
+animation = &"fall"
 autoplay = "idle"
-frame = 12
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139048532]
 position = Vector2(0, 18)

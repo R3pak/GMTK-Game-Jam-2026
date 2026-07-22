@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 # MOVEMENT VARS
-var speed := 250.0
+var speed: float = 250.0
 var direction_x: float
+var acc: float = 1.05
 
 # JUMP VARS
 @export var jump_height: float
@@ -13,7 +14,6 @@ var direction_x: float
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 func _physics_process(delta: float) -> void:
-	
 	velocity.y += get_gravity_value() * delta
 	velocity.x = direction_x * speed
 	
@@ -25,6 +25,11 @@ func _physics_process(delta: float) -> void:
 
 func get_input():
 	direction_x = Input.get_axis("left", "right")
+	
+	if Input.is_action_pressed("run"):
+		run()
+	else:
+		speed = 250.0
 	
 	if Input.is_action_just_pressed("jump"):
 		jump()
@@ -38,10 +43,18 @@ func jump():
 func get_gravity_value() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
+func run():
+	if speed <= 500.0:
+		speed *= acc
+
 func animation():
 	if not is_on_floor():
-		if $Sprite.animation != "jump":
-			$Sprite.play("jump")
+		if velocity.y < 0.0:
+			if $Sprite.animation != "jump":
+				$Sprite.play("jump")
+		else:
+			if $Sprite.animation != "fall":
+				$Sprite.play("fall")
 	else:
 		if direction_x:
 			$Sprite.play("walk")
