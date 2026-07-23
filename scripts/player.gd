@@ -19,12 +19,19 @@ var dashcd: bool = false
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 func _physics_process(delta: float) -> void:
+	var is_running := Input.is_action_pressed("run")
+	
 	velocity.y += get_gravity_value() * delta
-	
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
-	velocity_weight = delta * (acc if x_input else friction)
-	velocity.x = lerp(velocity.x, x_input * speed, velocity_weight)
 	
+	if x_input == 0:
+		velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
+	elif is_running:
+		velocity.x = lerp(velocity.x, x_input * speed, delta * acc)
+	else:
+		velocity.x = x_input * speed
+		
+		
 	animation()
 	get_input()
 	move_and_slide()
