@@ -332,12 +332,13 @@ jump_time_to_peak = 0.4
 jump_time_to_descent = 0.3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
+position = Vector2(-8, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"fall"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139048532]
-position = Vector2(8, 31)
+position = Vector2(0, 31)
 shape = SubResource("CapsuleShape2D_g4v7s")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1965027483]
@@ -347,8 +348,21 @@ position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = ExtResource("6_tuyoq")
 
+[node name="Label" type="Label" parent="Camera2D" unique_id=1243995257]
+offset_left = -353.0
+offset_top = -200.0
+offset_right = -313.0
+offset_bottom = -177.0
+theme_override_font_sizes/font_size = 24
+
 [node name="DashCd" type="Timer" parent="." unique_id=1186647703]
 wait_time = 2.0
 one_shot = true
 
+[node name="HealthTimer" type="Timer" parent="." unique_id=712301349]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="DashCd" to="." method="_on_dash_cd_timeout"]
+[connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]

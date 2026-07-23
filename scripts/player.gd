@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var lose_scene = preload("res://scenes/lose.tscn")
+
 # MOVEMENT VARS
 var speed: float = 250.0
 var x_input: float
@@ -18,6 +20,12 @@ var dashcd: bool = false
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
+# HEALTH VARS
+var health: int
+
+func _ready() -> void:
+	$HealthTimer.start()
+
 func _physics_process(delta: float) -> void:
 	var is_running := Input.is_action_pressed("run")
 	
@@ -30,8 +38,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, x_input * speed, delta * acc)
 	else:
 		velocity.x = x_input * speed
-		
-		
+	
+	health = int($HealthTimer.time_left)
+	$Camera2D/Label.text = str(health)
+	
 	animation()
 	get_input()
 	move_and_slide()
@@ -90,3 +100,9 @@ func animation():
 
 func _on_dash_cd_timeout() -> void:
 	dashcd = false
+
+func die():
+	get_tree().change_scene_to_packed(lose_scene)
+
+func _on_health_timer_timeout() -> void:
+	die()
