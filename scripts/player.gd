@@ -33,13 +33,13 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y += get_gravity_value() * delta
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
-	
-	if x_input == 0:
-		velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
-	elif is_running:
-		velocity.x = lerp(velocity.x, x_input * speed, delta * acc)
-	else:
-		velocity.x = x_input * speed
+	if not dashing:
+		if x_input == 0:
+			velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
+		elif is_running:
+			velocity.x = lerp(velocity.x, x_input * speed, delta * acc)
+		else:
+			velocity.x = x_input * speed
 	
 	health = int($HealthTimer.time_left)
 	$Camera2D/Label.text = str(health)
@@ -63,7 +63,7 @@ func get_input():
 	
 	if Input.is_action_just_pressed("dash") and not dashcd:
 			var dash_dir: float = -1.0 if $Sprite.flip_h else 1.0
-			velocity.x = dash_dir * 1800
+			velocity.x = dash_dir * 1500
 			dashcd = true
 			dashing = true
 			$Sprite.play("dash")
