@@ -10,7 +10,6 @@ var decel: float = 30.0
 var friction: float = 4.5
 var dashcd: bool = false
 
-
 # JUMP VARS
 @export var jump_height: float
 @export var jump_time_to_peak: float
@@ -25,8 +24,6 @@ func _physics_process(delta: float) -> void:
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	velocity_weight = delta * (acc if x_input else friction)
 	velocity.x = lerp(velocity.x, x_input * speed, velocity_weight)
-	
- 
 	
 	animation()
 	get_input()
@@ -71,13 +68,18 @@ func animation():
 				$Sprite.play("fall")
 	else:
 		if x_input:
-			$Sprite.play("walk")
+			if Input.is_action_pressed("run"):
+				if $Sprite.animation != "run":
+					$Sprite.play("run")
+			else:
+				if $Sprite.animation != "walk":
+					$Sprite.play("walk")
 		else:
-			$Sprite.play("idle")
+			if $Sprite.animation != "idle":
+				$Sprite.play("idle")
 	
 	if x_input != 0:
 		$Sprite.flip_h = x_input < 0
-
 
 func _on_dash_cd_timeout() -> void:
 	dashcd = false
