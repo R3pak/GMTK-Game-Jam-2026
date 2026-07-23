@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cnimvnhwn3631" path="res://graphics/sprites/jump.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bsyp7gsfiq0fw" path="res://graphics/sprites/legs_walk.png" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bxn7q70xo1333" path="res://graphics/sprites/legs_run.png" id="4_qlg0r"]
+[ext_resource type="Script" uid="uid://ch5tdlfqfugw" path="res://scenes/camera_2d.gd" id="6_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5jhy"]
 atlas = ExtResource("3_dqkch")
@@ -412,6 +413,9 @@ shape = SubResource("CapsuleShape2D_g4v7s")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1965027483]
 zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+script = ExtResource("6_tuyoq")
 
 [node name="DashCd" type="Timer" parent="." unique_id=1186647703]
 wait_time = 2.0
