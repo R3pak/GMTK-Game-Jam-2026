@@ -1,11 +1,32 @@
 [gd_scene format=3 uid="uid://b87hq2kmyp5ee"]
 
 [ext_resource type="Script" uid="uid://csldjucj0pnt8" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://dfgk24c872asj" path="res://graphics/sprites/legs_dash.png" id="2_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bc6ht5k6fphsi" path="res://graphics/sprites/legs_jump.png" id="2_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://druq2giqvv4y5" path="res://graphics/sprites/legs_idle.png" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bsyp7gsfiq0fw" path="res://graphics/sprites/legs_walk.png" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bxn7q70xo1333" path="res://graphics/sprites/legs_run.png" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://ch5tdlfqfugw" path="res://scripts/camera_2d.gd" id="6_tuyoq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdfoy"]
+atlas = ExtResource("2_fjrip")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhpqf"]
+atlas = ExtResource("2_fjrip")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5jhy"]
+atlas = ExtResource("2_fjrip")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_holxr"]
+atlas = ExtResource("2_fjrip")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx1m4"]
+atlas = ExtResource("2_fjrip")
+region = Rect2(400, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("2_tuyoq")
@@ -175,6 +196,26 @@ region = Rect2(900, 0, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fdfoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhpqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5jhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_holxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx1m4")
+}],
+"loop": 0,
+"name": &"dash",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_smehm")
 }, {
 "duration": 1.0,
@@ -334,7 +375,7 @@ jump_time_to_descent = 0.3
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
 position = Vector2(-8, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139048532]
@@ -360,7 +401,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HealthTimer" type="Timer" parent="." unique_id=712301349]
-wait_time = 5.0
+wait_time = 100.0
 one_shot = true
 autostart = true
 

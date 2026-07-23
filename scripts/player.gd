@@ -11,6 +11,7 @@ var accfs: float = 1.05 #the reason there is 2 acc variables is the first one br
 var decel: float = 30.0
 var friction: float = 4.5
 var dashcd: bool = false
+var dashing: bool = false
 
 # JUMP VARS
 @export var jump_height: float
@@ -25,6 +26,7 @@ var health: int
 
 func _ready() -> void:
 	$HealthTimer.start()
+	$Sprite.animation_finished.connect(_on_sprite_animation_finished)
 
 func _physics_process(delta: float) -> void:
 	var is_running := Input.is_action_pressed("run")
@@ -60,10 +62,12 @@ func get_input():
 		velocity.y *= 0.3
 	
 	if Input.is_action_just_pressed("dash") and not dashcd:
-		var dash_dir: float = -1.0 if $Sprite.flip_h else 1.0
-		velocity.x = dash_dir * 1800
-		dashcd = true
-		$DashCd.start()
+			var dash_dir: float = -1.0 if $Sprite.flip_h else 1.0
+			velocity.x = dash_dir * 1800
+			dashcd = true
+			dashing = true
+			$Sprite.play("dash")
+			$DashCd.start()
 
 func jump():
 	velocity.y = jump_velocity
@@ -76,6 +80,8 @@ func run():
 		speed *= accfs
 
 func animation():
+	if dashing:
+		return
 	if not is_on_floor():
 		if velocity.y < 0.0:
 			if $Sprite.animation != "jump":
@@ -97,6 +103,10 @@ func animation():
 	
 	if x_input != 0:
 		$Sprite.flip_h = x_input < 0
+
+func _on_sprite_animation_finished() -> void:  # NEW
+	if $Sprite.animation == "dash":
+		dashing = false
 
 func _on_dash_cd_timeout() -> void:
 	dashcd = false
