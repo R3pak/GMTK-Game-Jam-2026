@@ -8,6 +8,7 @@ var acc: float = 5.2
 var accfs: float = 1.05 #the reason there is 2 acc variables is the first one breaks the speed accel since its a much bigger number
 var decel: float = 30.0
 var friction: float = 4.5
+var dashcd: bool = false
 
 
 # JUMP VARS
@@ -43,6 +44,12 @@ func get_input():
 	
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
 		velocity.y *= 0.3
+	
+	if Input.is_action_just_pressed("dash") and not dashcd:
+		var dash_dir: float = -1.0 if $Sprite.flip_h else 1.0
+		velocity.x = dash_dir * 1800
+		dashcd = true
+		$DashCd.start()
 
 func jump():
 	velocity.y = jump_velocity
@@ -70,3 +77,7 @@ func animation():
 	
 	if x_input != 0:
 		$Sprite.flip_h = x_input < 0
+
+
+func _on_dash_cd_timeout() -> void:
+	dashcd = false
