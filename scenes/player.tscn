@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bsyp7gsfiq0fw" path="res://graphics/sprites/legs_walk.png" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bxn7q70xo1333" path="res://graphics/sprites/legs_run.png" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://ch5tdlfqfugw" path="res://scripts/camera_2d.gd" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://1whoui2r5ndq" path="res://sfx/footstep.wav" id="8_smehm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdfoy"]
 atlas = ExtResource("2_fjrip")
@@ -378,6 +379,9 @@ sprite_frames = SubResource("SpriteFrames_3vyb7")
 animation = &"dash"
 autoplay = "idle"
 
+[node name="Marker2D" type="Marker2D" parent="." unique_id=739926497]
+position = Vector2(0, 46)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139048532]
 position = Vector2(0, 31)
 shape = SubResource("CapsuleShape2D_g4v7s")
@@ -405,5 +409,14 @@ wait_time = 100.0
 one_shot = true
 autostart = true
 
+[node name="DustTimer" type="Timer" parent="." unique_id=489091132]
+wait_time = 0.25
+one_shot = true
+
+[node name="StepAudio" type="AudioStreamPlayer2D" parent="." unique_id=1883613659]
+stream = ExtResource("8_smehm")
+panning_strength = 3.0
+
 [connection signal="timeout" from="DashCd" to="." method="_on_dash_cd_timeout"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]
+[connection signal="timeout" from="DustTimer" to="." method="_on_dust_timer_timeout"]

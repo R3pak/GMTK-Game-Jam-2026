@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://ckndrnp5srohr"]
+
+[ext_resource type="Texture2D" uid="uid://dgifnh4vr4r3h" path="res://graphics/sprites/dust.png" id="1_c43mm"]
+[ext_resource type="Script" uid="uid://cqjm3823uk5n" path="res://scripts/dust.gd" id="1_n7s5k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7s5k"]
+atlas = ExtResource("1_c43mm")
+region = Rect2(0, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sse1k"]
+atlas = ExtResource("1_c43mm")
+region = Rect2(24, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kmfj"]
+atlas = ExtResource("1_c43mm")
+region = Rect2(48, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s2k0"]
+atlas = ExtResource("1_c43mm")
+region = Rect2(72, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_popga"]
+atlas = ExtResource("1_c43mm")
+region = Rect2(96, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3qkf"]
+atlas = ExtResource("1_c43mm")
+region = Rect2(120, 0, 24, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnd3e"]
+atlas = ExtResource("1_c43mm")
+region = Rect2(144, 0, 24, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7s5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sse1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kmfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s2k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_popga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3qkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnd3e")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="dust" type="Node2D" unique_id=1182794620]
+script = ExtResource("1_n7s5k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485021432]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

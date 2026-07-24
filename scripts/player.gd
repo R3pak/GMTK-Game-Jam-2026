@@ -24,6 +24,10 @@ var dashing: bool = false
 # HEALTH VARS
 var health: int
 
+# DUST VARS
+var dusty: bool
+@onready var dustscene = preload("res://scenes/dust.tscn")
+
 func _ready() -> void:
 	$HealthTimer.start()
 	$Sprite.animation_finished.connect(_on_sprite_animation_finished)
@@ -33,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y += get_gravity_value() * delta
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+	
 	if not dashing:
 		if x_input == 0:
 			velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
@@ -41,9 +46,15 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = x_input * speed
 	
+	if dusty:
+		var instance = dustscene.instantiate()
+		instance.global_position = $Marker2D.global_position
+		get_parent().add_child(instance)
+	
 	health = int($HealthTimer.time_left)
 	$Camera2D/Label.text = str(health)
 	
+	dust()
 	animation()
 	get_input()
 	move_and_slide()
@@ -116,3 +127,24 @@ func die():
 
 func _on_health_timer_timeout() -> void:
 	die()
+
+func dust():
+	if x_input and $DustTimer.is_stopped() and is_on_floor() and not dashing:
+		$DustTimer.start()
+		spawn_dust()
+		$StepAudio.pitch_scale = randf_range(0.75, 1.25)
+		$StepAudio.volume_db = randf_range(1.0, 1.25)
+		$StepAudio.play()
+	elif not x_input:
+		$DustTimer.stop()
+
+func spawn_dust():
+	var instance = dustscene.instantiate()
+	instance.global_position = $Marker2D.global_position
+	get_parent().add_child(instance)
+
+func _on_dust_timer_timeout() -> void:
+	if x_input:
+		spawn_dust()
+	else:
+		$DustTimer.stop()
