@@ -163,6 +163,7 @@ func _on_dust_timer_timeout() -> void:
 
 func take_damage(amount: float, knockback_dir: float) -> void:
 	var remaining: float = $HealthTimer.time_left - amount
+	$Camera2D.screen_shake(20, 0.2)
 	if remaining <= 0.0:
 		die()
 		return
