@@ -226,6 +226,11 @@ animations = [{
 "name": &"fall",
 "speed": 20.0
 }, {
+"frames": [],
+"loop": 1,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y4r1p")
@@ -376,11 +381,11 @@ jump_time_to_descent = 0.3
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
 position = Vector2(-8, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"dash"
+animation = &"hurt"
 autoplay = "idle"
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=739926497]
-position = Vector2(0, 46)
+position = Vector2(0, 42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139048532]
 position = Vector2(0, 31)
@@ -413,6 +418,9 @@ autostart = true
 wait_time = 0.25
 one_shot = true
 
+[node name="StunTimer" type="Timer" parent="." unique_id=375350967]
+one_shot = true
+
 [node name="StepAudio" type="AudioStreamPlayer2D" parent="." unique_id=1883613659]
 stream = ExtResource("8_smehm")
 panning_strength = 3.0
@@ -420,3 +428,4 @@ panning_strength = 3.0
 [connection signal="timeout" from="DashCd" to="." method="_on_dash_cd_timeout"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]
 [connection signal="timeout" from="DustTimer" to="." method="_on_dust_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

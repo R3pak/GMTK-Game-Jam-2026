@@ -23,6 +23,9 @@ var dashing: bool = false
 
 # HEALTH VARS
 var health: int
+var stunned: bool = false
+var knockback_force: float = 600.0
+var knockback_up: float = 300.0
 
 # DUST VARS
 var dusty: bool
@@ -39,13 +42,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y += get_gravity_value() * delta
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
-	if not dashing:
+	if not dashing and not stunned:
 		if x_input == 0:
 			velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
 		elif is_running:
 			velocity.x = lerp(velocity.x, x_input * speed, delta * acc)
 		else:
 			velocity.x = x_input * speed
+	elif stunned:
+		velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
 	
 	if dusty:
 		var instance = dustscene.instantiate()
@@ -94,6 +99,10 @@ func run():
 		speed *= accfs
 
 func animation():
+	if stunned:
+		if $Sprite.animation != "hurt":
+			$Sprite.play("hurt")
+		return
 	if dashing:
 		return
 	if not is_on_floor():
@@ -118,7 +127,7 @@ func animation():
 	if x_input != 0:
 		$Sprite.flip_h = x_input < 0
 
-func _on_sprite_animation_finished() -> void:  # NEW
+func _on_sprite_animation_finished() -> void:
 	if $Sprite.animation == "dash":
 		dashing = false
 
@@ -151,3 +160,18 @@ func _on_dust_timer_timeout() -> void:
 		spawn_dust()
 	else:
 		$DustTimer.stop()
+
+func take_damage(amount: float, knockback_dir: float) -> void:
+	var remaining: float = $HealthTimer.time_left - amount
+	if remaining <= 0.0:
+		die()
+		return
+	$HealthTimer.start(remaining)
+	
+	stunned = true
+	velocity.x = knockback_dir * knockback_force
+	velocity.y = -knockback_up
+	$StunTimer.start()
+
+func _on_stun_timer_timeout() -> void:
+	stunned = false
