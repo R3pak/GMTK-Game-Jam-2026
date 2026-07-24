@@ -35,7 +35,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var is_running := Input.is_action_pressed("run")
 	
-	velocity.y += get_gravity_value() * delta
+	if not dashing:
+		velocity.y += get_gravity_value() * delta
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
 	if not dashing:
@@ -73,12 +74,14 @@ func get_input():
 		velocity.y *= 0.3
 	
 	if Input.is_action_just_pressed("dash") and not dashcd:
-			var dash_dir: float = -1.0 if $Sprite.flip_h else 1.0
-			velocity.x = dash_dir * 1500
-			dashcd = true
-			dashing = true
-			$Sprite.play("dash")
-			$DashCd.start()
+		not is_on_floor()
+		velocity.y = 0.0
+		var dash_dir: float = -1.0 if $Sprite.flip_h else 1.0
+		velocity.x = dash_dir * 1500
+		dashcd = true
+		dashing = true
+		$Sprite.play("dash")
+		$DashCd.start()
 
 func jump():
 	velocity.y = jump_velocity
