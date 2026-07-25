@@ -79,7 +79,6 @@ func get_input():
 		velocity.y *= 0.3
 	
 	if Input.is_action_just_pressed("dash") and not dashcd:
-		not is_on_floor()
 		velocity.y = 0.0
 		var dash_dir: float = -1.0 if $Sprite.flip_h else 1.0
 		velocity.x = dash_dir * 1500
@@ -169,6 +168,7 @@ func take_damage(amount: float, knockback_dir: float) -> void:
 		return
 	$HealthTimer.start(remaining)
 	
+	dashing = false
 	stunned = true
 	velocity.x = knockback_dir * knockback_force
 	velocity.y = -knockback_up

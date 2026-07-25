@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bq2lfpckeysns"]
+
+[ext_resource type="Texture2D" uid="uid://c2om40loo7ueh" path="res://graphics/backgrounds/PC _ Computer - Pizza Tower - Backgrounds - Secret Backgrounds-export.png" id="1_bkp1e"]
+[ext_resource type="Shader" uid="uid://evvrc2jboqvf" path="res://graphics/shaders/background.gdshader" id="1_y0upk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkp1e"]
+shader = ExtResource("1_y0upk")
+shader_parameter/SPEED = 0.5
+
+[node name="Background" type="Node2D" unique_id=967314922]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1250804117]
+material = SubResource("ShaderMaterial_bkp1e")
+offset_right = 15202.0
+offset_bottom = 11847.0
+texture = ExtResource("1_bkp1e")
+stretch_mode = 1
