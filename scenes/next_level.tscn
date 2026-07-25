@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://csi4jhyxsw603"]
+
+[ext_resource type="Texture2D" uid="uid://ca8okun8awlgt" path="res://graphics/sprites/Next_Level.png" id="1_rf0ph"]
+[ext_resource type="Script" uid="uid://bdkkke0jom6yv" path="res://scripts/next_level.gd" id="1_sd4vo"]
+[ext_resource type="AudioStream" uid="uid://dhwgigbvmk03g" path="res://sfx/next_level.wav" id="3_e8fy2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sd4vo"]
+radius = 15.0
+height = 64.0
+
+[sub_resource type="Gradient" id="Gradient_sd4vo"]
+offsets = PackedFloat32Array(0.06139512, 0.6893021)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_sd4vo")
+fill = 1
+fill_from = Vector2(0.48724815, 0.5174497)
+
+[sub_resource type="Animation" id="Animation_rf0ph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -28)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="Animation" id="Animation_sd4vo"]
+resource_name = "float"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, -10), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 1.0, 0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8fy2"]
+_data = {
+&"RESET": SubResource("Animation_rf0ph"),
+&"float": SubResource("Animation_sd4vo")
+}
+
+[node name="NextLevel" type="Area2D" unique_id=2115823083]
+script = ExtResource("1_sd4vo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=152488168]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_sd4vo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1708473678]
+position = Vector2(0, -28)
+texture = ExtResource("1_rf0ph")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D" unique_id=1003312070]
+scale = Vector2(0.53124994, 1)
+color = Color(1, 0.2627451, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1825223811]
+libraries/ = SubResource("AnimationLibrary_e8fy2")
+autoplay = &"float"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1324948129]
+stream = ExtResource("3_e8fy2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

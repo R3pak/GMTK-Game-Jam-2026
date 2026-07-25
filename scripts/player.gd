@@ -12,6 +12,7 @@ var decel: float = 30.0
 var friction: float = 4.5
 var dashcd: bool = false
 var dashing: bool = false
+var absorbed: bool = false
 
 # JUMP VARS
 @export var jump_height: float
@@ -42,14 +43,14 @@ func _physics_process(delta: float) -> void:
 		velocity.y += get_gravity_value() * delta
 	x_input = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
-	if not dashing and not stunned:
+	if not dashing and not stunned and not absorbed:  # CHANGED: added `and not absorbed`
 		if x_input == 0:
 			velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
 		elif is_running:
 			velocity.x = lerp(velocity.x, x_input * speed, delta * acc)
 		else:
 			velocity.x = x_input * speed
-	elif stunned:
+	elif stunned or absorbed:  # CHANGED: also decay to stop when absorbed
 		velocity.x = move_toward(velocity.x, 0.0, friction * speed * delta)
 	
 	if dusty:
@@ -66,7 +67,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func get_input():
-	
+	if absorbed:
+		return
 	if Input.is_action_pressed("run") and x_input != 0:
 		run()
 	else:
@@ -98,6 +100,10 @@ func run():
 		speed *= accfs
 
 func animation():
+	if absorbed:
+		if $Sprite.animation != "absorbed":
+			$Sprite.play("absorbed")
+		return
 	if stunned:
 		if $Sprite.animation != "hurt":
 			$Sprite.play("hurt")

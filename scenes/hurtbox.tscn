@@ -8,5 +8,5 @@ size = Vector2(18, 36)
 [node name="Hurtbox" type="Area2D" unique_id=497400497]
 script = ExtResource("1_ksusc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=618597481]
+[node name="Rectangle" type="CollisionShape2D" parent="." unique_id=618597481]
 shape = SubResource("RectangleShape2D_g4v7s")

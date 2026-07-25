@@ -248,6 +248,11 @@ region = Rect2(900, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3vyb7"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"absorbed",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fdfoy")
@@ -464,7 +469,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g4v7s"]
 radius = 13.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1797269713]
+[node name="Player" type="CharacterBody2D" unique_id=1797269713 groups=["Player"]]
 script = ExtResource("1_3vyb7")
 jump_height = 150.0
 jump_time_to_peak = 0.4
@@ -473,7 +478,7 @@ jump_time_to_descent = 0.3
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1825013061]
 position = Vector2(-8, 0)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"idle"
+animation = &"absorbed"
 autoplay = "idle"
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=739926497]

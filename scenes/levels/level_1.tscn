@@ -1,0 +1,78 @@
+[gd_scene format=4 uid="uid://cohhfihmfgh0b"]
+
+[ext_resource type="Texture2D" uid="uid://c813j477a6h7n" path="res://graphics/tiles/Countdown_Tileset.png" id="1_ksju7"]
+[ext_resource type="PackedScene" uid="uid://b87hq2kmyp5ee" path="res://scenes/player.tscn" id="2_6iamk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6iamk"]
+texture = ExtResource("1_ksju7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:5/0 = 0
+0:6/0 = 0
+0:7/0 = 0
+0:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nsrm0"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_6iamk")
+
+[node name="Level_1" type="Node2D" unique_id=1836366142]
+
+[node name="Tilemaps" type="Node2D" parent="." unique_id=1301118869]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Tilemaps" unique_id=1649476248]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAADAAAAAAADAAAAAAAEAAAAAAABAAAAAAAFAAAAAAACAAAAAAAGAAAAAAADAAAAAAAHAAAAAAABAAAAAAAIAAAAAAACAAAAAAAJAAAAAAADAAAAAAAKAAAAAAABAAAAAAALAAAAAAACAAAAAAAMAAAAAAADAAAAAAANAAAAAAABAAIAAAAAAAEAAAAAAAQAAAABAAEAAAABAAQAAAACAAEAAAACAAQAAAADAAEAAAADAAQAAAAEAAEAAAABAAQAAAAFAAEAAAACAAQAAAAGAAEAAAADAAQAAAAHAAEAAAABAAQAAAAIAAEAAAACAAQAAAAJAAEAAAADAAQAAAAKAAEAAAABAAQAAAALAAEAAAACAAQAAAAMAAEAAAADAAQAAAANAAEAAAAEAAQAAAANAP3/AAAEAAEAAAANAP7/AAAEAAIAAAANAP//AAAEAAMAAAANAPr/AAAEAAEAAAANAPv/AAAEAAIAAAANAPz/AAAEAAMAAAA=")
+tile_set = SubResource("TileSet_nsrm0")
+
+[node name="Entities" type="Node2D" parent="." unique_id=391136573]
+
+[node name="Player" parent="Entities" unique_id=1797269713 instance=ExtResource("2_6iamk")]
+position = Vector2(16, -50)
