@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dhahk1ml5u3qh"]
+
+[ext_resource type="Script" uid="uid://px32ks75x03o" path="res://scripts/title_screen.gd" id="1_sa3yf"]
+[ext_resource type="Shader" uid="uid://evvrc2jboqvf" path="res://graphics/shaders/background.gdshader" id="2_mgrm8"]
+[ext_resource type="FontFile" uid="uid://dgd2py86t8jci" path="res://graphics/fonts/m6x11plus.ttf" id="2_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://qo417k3e6g77" path="res://graphics/backgrounds/AHM.png" id="3_dc4i4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e54dn"]
+shader = ExtResource("2_mgrm8")
+shader_parameter/SPEED = 0.15
+
+[node name="TitleScreen" type="Control" unique_id=53541030]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sa3yf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=528995804]
+material = SubResource("ShaderMaterial_e54dn")
+layout_mode = 0
+offset_left = -475.0
+offset_top = -543.0
+offset_right = 1814.0
+offset_bottom = 1284.0
+texture = ExtResource("3_dc4i4")
+stretch_mode = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=773477802]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 267.0
+offset_right = 793.0
+offset_bottom = 382.0
+theme_override_fonts/font = ExtResource("2_s4lrb")
+theme_override_font_sizes/font_size = 48
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="." unique_id=530467696]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 455.0
+offset_right = 794.0
+offset_bottom = 570.0
+theme_override_fonts/font = ExtResource("2_s4lrb")
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
