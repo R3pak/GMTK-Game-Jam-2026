@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2735hjrrytmx"
+path="res://.godot/imported/i made this song as fast as i could.mp3-a3b3498886b588cc003eb816004de5c2.mp3str"
+
+[deps]
+
+source_file="res://sfx/i made this song as fast as i could.mp3"
+dest_files=["res://.godot/imported/i made this song as fast as i could.mp3-a3b3498886b588cc003eb816004de5c2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

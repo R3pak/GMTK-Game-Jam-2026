@@ -4,10 +4,48 @@
 [ext_resource type="Shader" uid="uid://evvrc2jboqvf" path="res://graphics/shaders/background.gdshader" id="2_mgrm8"]
 [ext_resource type="FontFile" uid="uid://dgd2py86t8jci" path="res://graphics/fonts/m6x11plus.ttf" id="2_s4lrb"]
 [ext_resource type="Texture2D" uid="uid://qo417k3e6g77" path="res://graphics/backgrounds/AHM.png" id="3_dc4i4"]
+[ext_resource type="AudioStream" uid="uid://d2735hjrrytmx" path="res://sfx/i made this song as fast as i could.mp3" id="5_dc4i4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e54dn"]
 shader = ExtResource("2_mgrm8")
 shader_parameter/SPEED = 0.15
+
+[sub_resource type="Animation" id="Animation_mgrm8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_dc4i4"]
+resource_name = "size"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Label:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [24, 32, 24]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e54dn"]
+_data = {
+&"RESET": SubResource("Animation_mgrm8"),
+&"size": SubResource("Animation_dc4i4")
+}
 
 [node name="TitleScreen" type="Control" unique_id=53541030]
 layout_mode = 3
@@ -47,6 +85,32 @@ offset_bottom = 570.0
 theme_override_fonts/font = ExtResource("2_s4lrb")
 theme_override_font_sizes/font_size = 48
 text = "Quit"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1438703749]
+
+[node name="Label" type="Label" parent="Node2D" unique_id=1464658537]
+offset_left = 16.0
+offset_top = 672.0
+offset_right = 957.0
+offset_bottom = 696.0
+theme_override_fonts/font = ExtResource("2_s4lrb")
+theme_override_font_sizes/font_size = 24
+text = "ALL MUSIC IS MADE BY @BaconJeezbrgr ON YOUTUBE. PLEASE GO LISTEN TO THEIR MUSIC, IT IS ABSOLUTELY AMAZING!"
+
+[node name="Label2" type="Label" parent="Node2D" unique_id=643290438]
+offset_left = 383.0
+offset_top = 106.0
+offset_right = 930.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("2_s4lrb")
+theme_override_font_sizes/font_size = 128
+text = "TIME BANDIT"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1584425305]
+libraries/ = SubResource("AnimationLibrary_e54dn")
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="." unique_id=1192629328]
+stream = ExtResource("5_dc4i4")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
