@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://1whoui2r5ndq" path="res://sfx/footstep.wav" id="8_smehm"]
 [ext_resource type="AudioStream" uid="uid://gcnd031vudmj" path="res://sfx/dash.wav" id="11_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://coie00xdjai6h" path="res://sfx/hurt.wav" id="12_3v2ag"]
+[ext_resource type="AudioStream" uid="uid://b2sf63jajnmor" path="res://sfx/picku.wav" id="13_jej6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8txt3"]
 atlas = ExtResource("2_y4r1p")
@@ -666,6 +667,9 @@ stream = ExtResource("11_d2wvv")
 
 [node name="HurtAudio" type="AudioStreamPlayer2D" parent="." unique_id=279283743]
 stream = ExtResource("12_3v2ag")
+
+[node name="CollectAudio" type="AudioStreamPlayer2D" parent="." unique_id=628165556]
+stream = ExtResource("13_jej6c")
 
 [connection signal="timeout" from="DashCd" to="." method="_on_dash_cd_timeout"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cco15lypv52we"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(20, 316)
+
+[node name="checkpoint" type="Area2D" unique_id=299911176]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2048567112]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
