@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://fe3esvp7rfq7"]
+
+[ext_resource type="Texture2D" uid="uid://rija137j3yr8" path="res://graphics/sprites/small clock(1).png" id="1_8uwwm"]
+[ext_resource type="Script" uid="uid://cyiajy2fu1hct" path="res://scenes/clockwork.gd" id="1_yvhp1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(31, 32)
+
+[sub_resource type="Animation" id="Animation_yvhp1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -29)]
+}
+
+[sub_resource type="Animation" id="Animation_6qjso"]
+resource_name = "hover"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -29), Vector2(2, -32), Vector2(2, -29)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3fp8f"]
+_data = {
+&"RESET": SubResource("Animation_yvhp1"),
+&"hover": SubResource("Animation_6qjso")
+}
+
+[node name="Clockwork" type="Area2D" unique_id=1449478794]
+script = ExtResource("1_yvhp1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1973806176]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1328173955]
+libraries/ = SubResource("AnimationLibrary_3fp8f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=600539379]
+position = Vector2(2, -29)
+texture = ExtResource("1_8uwwm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
