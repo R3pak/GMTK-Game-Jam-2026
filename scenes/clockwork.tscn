@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fe3esvp7rfq7"]
 
 [ext_resource type="Texture2D" uid="uid://rija137j3yr8" path="res://graphics/sprites/small clock(1).png" id="1_8uwwm"]
-[ext_resource type="Script" uid="uid://cyiajy2fu1hct" path="res://scenes/clockwork.gd" id="1_yvhp1"]
+[ext_resource type="Script" uid="uid://cyiajy2fu1hct" path="res://scripts/clockwork.gd" id="1_yvhp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(31, 32)
