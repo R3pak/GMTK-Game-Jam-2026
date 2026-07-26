@@ -166,6 +166,11 @@ func _on_dust_timer_timeout() -> void:
 	else:
 		$DustTimer.stop()
 
+func timer_plus(amount:float):
+	var add: float = $HealthTimer.time_left + amount
+	$HealthTimer.start(add)
+	
+
 func take_damage(amount: float, knockback_dir: float) -> void:
 	var remaining: float = $HealthTimer.time_left - amount
 	$Camera2D.screen_shake(20, 0.2)

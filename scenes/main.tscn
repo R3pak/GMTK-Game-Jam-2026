@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b87hq2kmyp5ee" path="res://scenes/player.tscn" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://qo417k3e6g77" path="res://graphics/backgrounds/AHM.png" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bh5vakkl0fugn" path="res://scenes/spike.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://fe3esvp7rfq7" path="res://scenes/clockwork.tscn" id="6_tefeu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tefeu"]
 shader = ExtResource("1_tbgi4")
@@ -148,3 +149,6 @@ position = Vector2(226, -31)
 rotation = -0.4792115
 energy = 0.1
 shadow_enabled = true
+
+[node name="Clockwork" parent="." unique_id=1449478794 instance=ExtResource("6_tefeu")]
+position = Vector2(223, -93)
