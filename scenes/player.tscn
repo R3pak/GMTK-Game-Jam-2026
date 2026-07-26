@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c7wass7mvirmh" path="res://graphics/sprites/legs_hurt.png" id="4_ur7pv"]
 [ext_resource type="Script" uid="uid://ch5tdlfqfugw" path="res://scripts/camera_2d.gd" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://1whoui2r5ndq" path="res://sfx/footstep.wav" id="8_smehm"]
+[ext_resource type="AudioStream" uid="uid://gcnd031vudmj" path="res://sfx/dash.wav" id="11_d2wvv"]
+[ext_resource type="AudioStream" uid="uid://coie00xdjai6h" path="res://sfx/hurt.wav" id="12_3v2ag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8txt3"]
 atlas = ExtResource("2_y4r1p")
@@ -658,6 +660,12 @@ one_shot = true
 [node name="StepAudio" type="AudioStreamPlayer2D" parent="." unique_id=1883613659]
 stream = ExtResource("8_smehm")
 panning_strength = 3.0
+
+[node name="DashAudio" type="AudioStreamPlayer2D" parent="." unique_id=441834307]
+stream = ExtResource("11_d2wvv")
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="." unique_id=279283743]
+stream = ExtResource("12_3v2ag")
 
 [connection signal="timeout" from="DashCd" to="." method="_on_dash_cd_timeout"]
 [connection signal="timeout" from="HealthTimer" to="." method="_on_health_timer_timeout"]

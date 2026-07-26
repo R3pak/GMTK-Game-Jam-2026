@@ -87,6 +87,7 @@ func get_input():
 		dashcd = true
 		dashing = true
 		$Sprite.play("dash")
+		$DashAudio.play()
 		$DashCd.start()
 
 func jump():
@@ -169,7 +170,6 @@ func _on_dust_timer_timeout() -> void:
 func timer_plus(amount:float):
 	var add: float = $HealthTimer.time_left + amount
 	$HealthTimer.start(add)
-	
 
 func take_damage(amount: float, knockback_dir: float) -> void:
 	var remaining: float = $HealthTimer.time_left - amount
@@ -179,6 +179,7 @@ func take_damage(amount: float, knockback_dir: float) -> void:
 		return
 	$HealthTimer.start(remaining)
 	
+	$HurtAudio.play()
 	dashing = false
 	stunned = true
 	velocity.x = knockback_dir * knockback_force
