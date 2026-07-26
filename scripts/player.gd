@@ -170,6 +170,7 @@ func _on_dust_timer_timeout() -> void:
 func timer_plus(amount:float):
 	var add: float = $HealthTimer.time_left + amount
 	$HealthTimer.start(add)
+	$CollectAudio.play()
 
 func take_damage(amount: float, knockback_dir: float) -> void:
 	var remaining: float = $HealthTimer.time_left - amount

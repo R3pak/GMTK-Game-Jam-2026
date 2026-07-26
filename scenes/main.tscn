@@ -139,6 +139,9 @@ tile_set = SubResource("TileSet_57qmd")
 [node name="Player" parent="Entities" unique_id=1797269713 instance=ExtResource("2_0wfyh")]
 position = Vector2(39, -46)
 
+[node name="Clockwork" parent="Entities" unique_id=1449478794 instance=ExtResource("6_tefeu")]
+position = Vector2(223, -93)
+
 [node name="Hurtboxes" type="Node2D" parent="." unique_id=750685257]
 
 [node name="Hurtbox" parent="Hurtboxes" unique_id=497400497 instance=ExtResource("3_sugp2")]
@@ -150,9 +153,6 @@ position = Vector2(226, -31)
 rotation = -0.4792115
 energy = 0.1
 shadow_enabled = true
-
-[node name="Clockwork" parent="." unique_id=1449478794 instance=ExtResource("6_tefeu")]
-position = Vector2(223, -93)
 
 [node name="Buzz" parent="." unique_id=164804932 instance=ExtResource("7_o6xl0")]
 position = Vector2(455, -156)
