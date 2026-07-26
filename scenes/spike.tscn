@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bh5vakkl0fugn"]
+
+[ext_resource type="Script" uid="uid://0a3k4ifa1ocp" path="res://scripts/hurtbox.gd" id="1_ksusc"]
+[ext_resource type="Texture2D" uid="uid://da2etg0rr3y28" path="res://graphics/sprites/spike.png" id="2_7a7y0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(12, 20)
+
+[node name="Spike" type="Area2D" unique_id=497400497]
+script = ExtResource("1_ksusc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1201200037]
+position = Vector2(2, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_7a7y0")
+
+[node name="Rectangle" type="CollisionShape2D" parent="." unique_id=618597481]
+position = Vector2(-2, 12)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_g4v7s")

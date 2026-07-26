@@ -1,10 +1,11 @@
 [gd_scene format=4 uid="uid://e1lu2rw72n2o"]
 
 [ext_resource type="Shader" uid="uid://evvrc2jboqvf" path="res://graphics/shaders/background.gdshader" id="1_1wklo"]
+[ext_resource type="Script" uid="uid://bjksam8r3jyp8" path="res://scripts/tutorial.gd" id="1_7ac3l"]
 [ext_resource type="Texture2D" uid="uid://c813j477a6h7n" path="res://graphics/tiles/Countdown_Tileset.png" id="1_rnyxf"]
 [ext_resource type="Texture2D" uid="uid://qo417k3e6g77" path="res://graphics/backgrounds/AHM.png" id="2_7ac3l"]
 [ext_resource type="PackedScene" uid="uid://b87hq2kmyp5ee" path="res://scenes/player.tscn" id="2_ub0e1"]
-[ext_resource type="PackedScene" uid="uid://csi4jhyxsw603" path="res://scenes/next_level.tscn" id="3_1r3rq"]
+[ext_resource type="FontFile" uid="uid://dgd2py86t8jci" path="res://graphics/fonts/m6x11plus.ttf" id="5_1wklo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iig34"]
 shader = ExtResource("1_1wklo")
@@ -71,7 +72,45 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1wklo")
 
+[sub_resource type="Animation" id="Animation_1wklo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texts:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7ac3l"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texts:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iig34"]
+_data = {
+&"RESET": SubResource("Animation_1wklo"),
+&"float": SubResource("Animation_7ac3l")
+}
+
 [node name="Tutorial" type="Node2D" unique_id=1899593636]
+script = ExtResource("1_7ac3l")
 
 [node name="Backgrounds" type="Node2D" parent="." unique_id=671885400]
 
@@ -79,26 +118,23 @@ sources/0 = SubResource("TileSetAtlasSource_1wklo")
 
 [node name="TextureRect" type="TextureRect" parent="Backgrounds/Parallax2D" unique_id=699070307]
 material = SubResource("ShaderMaterial_iig34")
-offset_left = -1597.0
-offset_top = -1451.0
-offset_right = 1809.0
-offset_bottom = 1077.0
+offset_left = -13775.0
+offset_top = -8136.0
+offset_right = 13993.0
+offset_bottom = 7774.0
 texture = ExtResource("2_7ac3l")
 stretch_mode = 1
 
 [node name="Tilemaps" type="Node2D" parent="." unique_id=674858927]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Tilemaps" unique_id=280842205]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAADAAAAAAADAAAAAAAEAAAAAAABAAAAAAAFAAAAAAACAAAAAAAGAAAAAAADAAAAAAAHAAAAAAABAAAAAAAIAAAAAAACAAAAAAAJAAAAAAADAAAAAAAKAAAAAAABAAAAAAALAAAAAAACAAAAAAAMAAAAAAADAAAAAAANAAAAAAAEAAAAAAAAAAEAAAAAAAQAAAABAAEAAAABAAQAAAACAAEAAAACAAQAAAADAAEAAAADAAQAAAAEAAEAAAABAAQAAAAFAAEAAAACAAQAAAAGAAEAAAADAAQAAAAHAAEAAAABAAQAAAAIAAEAAAACAAQAAAAJAAEAAAADAAQAAAAKAAEAAAABAAQAAAALAAEAAAACAAQAAAAMAAEAAAADAAQAAAANAAEAAAAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAABAAAAAAABAAAAAAACAAAAAAACAAAAAAADAAAAAAADAAAAAAAEAAAAAAABAAAAAAAFAAAAAAACAAAAAAAGAAAAAAADAAAAAAAHAAAAAAABAAAAAAAIAAAAAAACAAAAAAAJAAAAAAADAAAAAAAKAAAAAAABAAAAAAALAAAAAAACAAAAAAAMAAAAAAADAAAAAAANAAAAAAAAAAYAAAABAAEAAAABAAQAAAACAAEAAAACAAQAAAADAAEAAAADAAQAAAAEAAEAAAABAAQAAAAFAAEAAAACAAQAAAAGAAEAAAADAAQAAAAHAAEAAAABAAQAAAAIAAEAAAACAAQAAAAJAAEAAAADAAQAAAAKAAEAAAABAAQAAAALAAEAAAACAAQAAAAMAAEAAAADAAQAAAANAAEAAAACAAQAAAANAP//AAAAAAAAAAAOAP//AAABAAAAAAAPAP//AAACAAAAAAAQAP//AAADAAAAAAARAP//AAABAAAAAAASAP//AAACAAAAAAATAP//AAADAAAAAAAUAP//AAABAAAAAAAVAP//AAACAAAAAAAWAP//AAADAAAAAAAXAP//AAAAAAEAAAAOAAEAAAABAAQAAAAPAAEAAAACAAQAAAAQAAEAAAADAAQAAAARAAEAAAABAAQAAAASAAEAAAACAAQAAAATAAEAAAADAAQAAAAUAAEAAAABAAQAAAAVAAEAAAACAAQAAAAWAAEAAAADAAQAAAAXAAEAAAABAAQAAAAXAAAAAAAEAAMAAAAWAAAAAAAAAAYAAAAVAAAAAAAAAAYAAAAUAAAAAAAAAAYAAAATAAAAAAAAAAYAAAASAAAAAAAAAAYAAAARAAAAAAAAAAYAAAAQAAAAAAAAAAYAAAAPAAAAAAAAAAYAAAAOAAAAAAAAAAYAAAD+/wAAAAABAAAAAAD//wAAAAACAAAAAAAAAAAAAAADAAAAAAD7/wAAAAABAAAAAAD8/wAAAAACAAAAAAD9/wAAAAADAAAAAAD4/wAAAAABAAAAAAD5/wAAAAACAAAAAAD6/wAAAAADAAAAAAD1/wAAAAABAAAAAAD2/wAAAAACAAAAAAD3/wAAAAADAAAAAADy/wAAAAABAAAAAADz/wAAAAACAAAAAAD0/wAAAAADAAAAAAD+/wEAAAABAAQAAAD//wEAAAACAAQAAAAAAAEAAAADAAQAAAD7/wEAAAABAAQAAAD8/wEAAAACAAQAAAD9/wEAAAADAAQAAAD4/wEAAAABAAQAAAD5/wEAAAACAAQAAAD6/wEAAAADAAQAAAD1/wEAAAABAAQAAAD2/wEAAAACAAQAAAD3/wEAAAADAAQAAADy/wEAAAABAAQAAADz/wEAAAACAAQAAAD0/wEAAAADAAQAAADx/wAAAAABAAAAAADx/wEAAAABAAQAAADw/wEAAAAAAAQAAADw/wAAAAAAAAMAAADw////AAAAAAMAAADw//7/AAAAAAMAAADw//3/AAAAAAMAAADw//z/AAAAAAMAAADw//v/AAAAAAMAAADw//r/AAAAAAAAAADx//r/AAAEAAAAAADx//v/AAAEAAEAAADx//z/AAAEAAEAAADx//3/AAAEAAEAAADx//7/AAAEAAIAAADx////AAAEAAMAAAAXAPz/AAAAAAEAAAAXAP3/AAAAAAIAAAAXAP7/AAAAAAMAAAAXAPv/AAAAAAAAAAAYAPv/AAABAAAAAAAZAPv/AAACAAAAAAAaAPv/AAADAAAAAAAbAPv/AAABAAAAAAAcAPv/AAACAAAAAAAdAPv/AAADAAAAAAAYAAEAAAACAAQAAAAZAAEAAAADAAQAAAAaAAEAAAABAAQAAAAbAAEAAAABAAQAAAAcAAEAAAACAAQAAAAdAAEAAAADAAQAAAAYAP3/AAAAAAUAAAAYAP7/AAAAAAYAAAAYAP//AAAAAAcAAAAYAAAAAAAAAAgAAAAZAP3/AAAAAAUAAAAZAP7/AAAAAAYAAAAZAP//AAAAAAcAAAAZAAAAAAAAAAgAAAAaAP3/AAAAAAUAAAAaAP7/AAAAAAYAAAAaAP//AAAAAAcAAAAaAAAAAAAAAAgAAAAbAP3/AAAAAAUAAAAbAP7/AAAAAAYAAAAbAP//AAAAAAcAAAAbAAAAAAAAAAgAAAAcAP3/AAAAAAUAAAAcAP7/AAAAAAYAAAAcAP//AAAAAAcAAAAcAAAAAAAAAAgAAAAdAP3/AAAAAAUAAAAdAP7/AAAAAAYAAAAdAP//AAAAAAcAAAAdAAAAAAAAAAgAAAAYAPz/AAAAAAcAAAAcAPz/AAAAAAcAAAAZAPz/AAAAAAYAAAAdAPz/AAAAAAYAAAAaAPz/AAAAAAUAAAAbAPz/AAAAAAUAAAA=")
 tile_set = SubResource("TileSet_yf5fn")
 
 [node name="Entities" type="Node2D" parent="." unique_id=1404861315]
 
 [node name="Player" parent="Entities" unique_id=1797269713 instance=ExtResource("2_ub0e1")]
-position = Vector2(42, -49)
-
-[node name="NextLevel" parent="Entities" unique_id=2115823083 instance=ExtResource("3_1r3rq")]
-position = Vector2(415, -31)
+position = Vector2(-425, -43)
 
 [node name="Lights" type="Node2D" parent="." unique_id=1529429847]
 
@@ -107,3 +143,36 @@ rotation = -0.4792115
 energy = 0.1
 blend_mode = 1
 shadow_enabled = true
+
+[node name="Texts" type="Node2D" parent="." unique_id=1317729062]
+
+[node name="Label" type="Label" parent="Texts" unique_id=2007856210]
+offset_left = -437.0
+offset_top = -128.0
+offset_right = -202.0
+offset_bottom = -91.0
+theme_override_fonts/font = ExtResource("5_1wklo")
+theme_override_font_sizes/font_size = 24
+text = "Welcome!
+Use WASD or arrow keys to move around"
+
+[node name="Label2" type="Label" parent="Texts" unique_id=843100279]
+offset_left = 74.0
+offset_top = -124.0
+offset_right = 400.0
+offset_bottom = -89.0
+theme_override_fonts/font = ExtResource("5_1wklo")
+theme_override_font_sizes/font_size = 24
+text = "Tap spacebar or arrow key up to jump"
+
+[node name="Label3" type="Label" parent="Texts" unique_id=1724970754]
+offset_left = 462.0
+offset_top = -145.0
+offset_right = 727.0
+offset_bottom = -121.0
+theme_override_fonts/font = ExtResource("5_1wklo")
+theme_override_font_sizes/font_size = 24
+text = "Hold spacebar for a higher jump"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1001723611]
+libraries/ = SubResource("AnimationLibrary_iig34")
